@@ -1,1 +1,1 @@
-# postgres-to-geojson
+example node server that converts a postgres table to geojson (mostly so I don't forget)
