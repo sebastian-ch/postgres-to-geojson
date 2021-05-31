@@ -58,6 +58,25 @@ app.get('/', (req, res1) => {
     //client.end();
   })
 
+})
+
+
+app.get('/geobuftest', (req, res1) => {
+  
+
+  res1.header('Access-Control-Allow-Origin', '*');
+  res1.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res1.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+
+  const qu = `select ST_AsGeobuf(sample,'geom') FROM (SELECT gid,geom from va) as sample`
+
+  client.query(qu, (err, res) => {
+    if(err) {console.log(err)}
+
+
+    res1.send(res.rows[0].st_asgeobuf);
+  })
 
 
 })
